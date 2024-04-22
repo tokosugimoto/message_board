@@ -8,37 +8,43 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import antlr.TokenStreamHiddenTokenFilter;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
-@Table
+@NamedQueries({
+    @NamedQuery(
+        name = "getAllMessages",
+        query = "SELECT m FROM Message AS m ORDER BY m.id DESC"
+    )
+})
+@Table(name = "messages")
 public class Message {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     @Column(name = "title", length = 255, nullable = false)
     private String title;
-    
+
     @Column(name = "content", length = 255, nullable = false)
     private String content;
-    
+
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
-    
+
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
     public Integer getId() {
         return id;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
-        
+
     public String getTitle() {
         return title;
     }
@@ -46,7 +52,7 @@ public class Message {
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
     public String getContent() {
         return content;
     }
@@ -62,7 +68,7 @@ public class Message {
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
-    
+
     public Timestamp getUpdated_at() {
         return updated_at;
     }
@@ -70,5 +76,4 @@ public class Message {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
-
 }
