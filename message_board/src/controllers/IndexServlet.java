@@ -37,9 +37,4 @@ public class IndexServlet extends HttpServlet {
 
         em.close();
     }
-	
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-}
-
 }
